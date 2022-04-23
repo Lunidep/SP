@@ -140,7 +140,7 @@ int tCG::p23(){ // BRANCHES -> CLAUS ELSE
 }
 
 int tCG::p24(){ //    CLAUS -> ( BOOL E )
-	S1->obj = "" + S2->obj + "\n\t? " + S3->obj + ": ";
+	S1->obj = "" + S2->obj + "\n\t? " + S3->obj + "\n\t: ";
 	return 0;
 }
 
@@ -210,7 +210,7 @@ int tCG::p36(){ //   HCPROC -> ( $id
 
 int tCG::p37(){ //   HCPROC -> HCPROC E
 	if (S1->count) {
-		S1->obj += ",\n\t";
+		S1->obj += "\n\t , ";
 	}
 	S1->obj += S2->obj;
 	++S1->count;
@@ -388,14 +388,14 @@ int tCG::p72(){ //      DEF -> PROC
 
 //------------------------------------------------------------
 int tCG::p73(){ //     PRED -> HPRED BOOL )
-	S1->obj += S2->obj + ";\n\t }\n";
+	S1->obj += S2->obj + ";\n\t " + "}\n";
 	return 0;
 }
 
 int tCG::p74(){ //    HPRED -> PDPAR )
 	S1->obj += ")";
 	declarations += S1->obj + ";\n";
-	S1->obj += "{\n return ";
+	S1->obj += "{\n return\n ";
 	S1->count = 0;
 	return 0;
 }
@@ -461,18 +461,18 @@ int tCG::p83(){ //     PROC -> HPROC PCBODY )
 int tCG::p84() { // HPROC -> PCPAR )
 	S1->obj += ")";
 	declarations += S1->obj + ";\n";
-	S1->obj += "{\n\t";
+	S1->obj += "{\n ";
 	S1->count = 0;
 	return 0;
 }
 
 int tCG::p85(){ //   PCBODY -> E
-	S1->obj = "return\n\t" + S1->obj + ";\n";
+	S1->obj = "return\n " + S1->obj + ";\n";
 	return 0;
 }
 
 int tCG::p86(){ //   PCBODY -> INTER PCBODY
-	S1->obj += ";\n\t" + S2->obj;
+	S1->obj += ";\n\t " + S2->obj;
 	return 0;
 }
 
