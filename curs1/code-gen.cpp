@@ -82,7 +82,7 @@ int tCG::p13(){ //    HAREX -> ( AROP
 
 int tCG::p14(){ //    HAREX -> HAREX E
 	if (S1->count) {
-    	S1->obj += S2->obj + " " + S1->name;
+    	S1->obj += " " + S2->obj + " " + S1->name;
   	} 
 	else {
     	S1->obj = S2->obj + " " + S1->name;
@@ -123,7 +123,7 @@ int tCG::p20(){ //   HEASYL -> ( let ( )
 }
 
 int tCG::p21(){ //   HEASYL -> HEASYL INTER
-	S1->obj += S2->obj + ",\n\t";
+	S1->obj += S2->obj + ",\n\t ";
 	return 0;
 }
 
@@ -140,7 +140,7 @@ int tCG::p23(){ // BRANCHES -> CLAUS ELSE
 }
 
 int tCG::p24(){ //    CLAUS -> ( BOOL E )
-	S1->obj = "" + S2->obj + "\n\t? " + S3->obj + "\n\t: ";
+	S1->obj = S2->obj + "\n\t? " + S3->obj + "\n\t: ";
 	return 0;
 }
 
@@ -210,7 +210,7 @@ int tCG::p36(){ //   HCPROC -> ( $id
 
 int tCG::p37(){ //   HCPROC -> HCPROC E
 	if (S1->count) {
-		S1->obj += "\n\t , ";
+		S1->obj += ", ";
 	}
 	S1->obj += S2->obj;
 	++S1->count;
@@ -367,7 +367,7 @@ int tCG::p67(){ //     CALC -> DISPSET
 int tCG::p68(){ //     DEFS -> DEF
 	return 0;
 }
-
+//????????????????
 int tCG::p69(){ //     DEFS -> DEFS DEF
 	S1->obj = S1->obj + "\n" + S2->obj;
 	return 0;
@@ -408,7 +408,7 @@ int tCG::p75(){ //    PDPAR -> ( define ( $idq
 
 int tCG::p76(){ //    PDPAR -> PDPAR $idq
 	if (S1->count) {
-		S1->obj += (S1->count % 2) ? ", " : ",\n\t";
+		S1->obj += (S1->count % 2) ? ", " : "\n\t, ";
 	}
 	S1->obj += "bool " + decor(S2->name);
 	++S1->count;
@@ -417,7 +417,7 @@ int tCG::p76(){ //    PDPAR -> PDPAR $idq
 
 int tCG::p77(){ //    PDPAR -> PDPAR $id
 	if (S1->count) {
-		S1->obj += (S1->count % 2) ? ", " : ",\n\t";
+		S1->obj += (S1->count % 2) ? ", " : "\n\t, ";
 	}
 	S1->obj += "double " + decor(S2->name);
 	++S1->count;
@@ -430,9 +430,10 @@ int tCG::p78(){ //      SET -> ( set! $id E )
 }
 
 //------------------------------------------------------------
+
 int tCG::p79(){ //      VAR -> VARDCL VARINI )
 	S1->name = S1->obj;
-	S1->obj = S1->obj + " = " + S2->obj + ";";
+	S1->obj = S1->obj + " = " + S2->obj + ";\n\t ";
 	return 0;
 }
 
@@ -467,7 +468,7 @@ int tCG::p84() { // HPROC -> PCPAR )
 }
 
 int tCG::p85(){ //   PCBODY -> E
-	S1->obj = "return\n " + S1->obj + ";\n";
+	S1->obj = "return\n " + S1->obj + ";\n\t ";
 	return 0;
 }
 
@@ -477,7 +478,7 @@ int tCG::p86(){ //   PCBODY -> INTER PCBODY
 }
 
 int tCG::p87(){ //   PCBODY -> VAR PCBODY
-	S1->obj = S1->obj + "\n\t" + S2->obj;
+	S1->obj = S1->obj + S2->obj;
 	return 0;
 }
 

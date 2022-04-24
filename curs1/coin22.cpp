@@ -9,7 +9,9 @@ double cc/*57*/ (double amount, double coins__set);
 double denomination__list/*74*/ (double coins__set);
 //________________ 
 double VARIANT = 17.;
+	 
 double COINS = 4.;
+	 
 double largest/*8*/ (double coins__set){
  return
  ((coins__set == 1.)
@@ -25,7 +27,7 @@ double largest/*8*/ (double coins__set){
 	? 25.
 	: 
 	0.))));
-}
+	 }
 
 double count__change/*31*/ (double amount){
  display("______\n amount: ");
@@ -37,15 +39,14 @@ double count__change/*31*/ (double amount){
 	 return
  (!((!(!((0. < amount))) && !((COINS < 1.)) && !((largest(COINS) == 0.))))
 	? (display("Improper parameter value!\ncount-change= "),
-	-1.)
+	 -1.)
 	: 
 	(display("List of coin denominations: "),
-	denomination__list(COINS),
-	display("count-change= "),
-	cc(amount
-	 , COINS)
+	 denomination__list(COINS),
+	 display("count-change= "),
+	 cc(amount, COINS)
 	 ));
-}
+	 }
 
 bool Shaeffer_Q/*53*/ (bool x_Q, bool y_Q){
  return
@@ -61,23 +62,21 @@ double cc/*57*/ (double amount, double coins__set){
 	 (0. < coins__set))
 	? 0.
 	: 
-	(cc(amount
-	 , (coins__set - 1.))
-	  + cc((amount - largest(coins__set))
-	 , coins__set)
+	(cc(amount, (coins__set - 1.))
+	  + cc((amount - largest(coins__set)), coins__set)
 	 )));
-}
+	 }
 
 double denomination__list/*74*/ (double coins__set){
  return
  ((coins__set == 0.)
 	? (newline(),
-	0.)
+	 0.)
 	: 
 	(display(largest(coins__set)),
-	display(" "),
-	denomination__list((coins__set - 1.))));
-}
+	 display(" "),
+	 denomination__list((coins__set - 1.))));
+	 }
 
 int main(){
 	display("Variant ");
