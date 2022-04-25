@@ -145,7 +145,7 @@ int tCG::p24(){ //    CLAUS -> ( BOOL E )
 }
 
 int tCG::p25(){ //     ELSE -> ( else ELSEB )
-	S1->obj += "\n\t" + S3->obj;
+	S1->obj += S3->obj;
 	return 0;
 }
 
@@ -195,11 +195,7 @@ int tCG::p34(){ //    SELSE -> ( else STR )
 //------------------------------------------------------------
 
 int tCG::p35(){ //    CPROC -> HCPROC )
-	if (S1->count > 1) {
-		S1->obj = S1->obj + ")\n\t ";
-	} else {
-		S1->obj = S1->obj + ")";
-	}
+	S1->obj = S1->obj + ")";
 	return 0;
 }
 
@@ -438,7 +434,7 @@ int tCG::p79(){ //      VAR -> VARDCL VARINI )
 }
 
 int tCG::p80(){ //   VARDCL -> ( define $id
-	S1->obj = "double " + decor(S3->name);	
+	S1->obj = "double " + decor(S3->name) + "/*" + S3->line + "*/";	
 	return 0;
 }
 

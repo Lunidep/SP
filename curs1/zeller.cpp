@@ -5,43 +5,32 @@ double zeller/*18*/ (double d, double m,
 	double y, double c);
 double neg__to__pos/*29*/ (double d);
 double birthday/*36*/ (double dw);
-extern double dd;
-extern double mm;
-extern double yyyy;
+extern double dd/*50*/;
+extern double mm/*51*/;
+extern double yyyy/*52*/;
 //________________ 
 double day__of__week/*1*/ (){
  return
  zeller(dd, (010. + (!((2. < mm))
 	? mm
-	: 
-	(mm - 12.))), remainder((1. + ((mm < 3.)
+	: (mm - 12.))), remainder((1. + ((mm < 3.)
 	? (yyyy - 2.)
-	: 
-	(yyyy - 1.))), 100.)
-	 , quotient((!((2. < mm))
+	: (yyyy - 1.))), 100.), quotient((!((2. < mm))
 	? (yyyy - 1.)
-	: 
-	yyyy), 100.)
-	 )
-	 ;
+	: yyyy), 100.));
 	 }
 
 double zeller/*18*/ (double d, double m,
 	double y, double c){
  return
- neg__to__pos(remainder((d + y + quotient(((26. * m) - 2.), 10.)
-	  + quotient(y, 4.)
-	  + quotient(c, 4.)
-	  + (2. * (- c))), 7.)
-	 );
+ neg__to__pos(remainder((d + y + quotient(((26. * m) - 2.), 10.) + quotient(y, 4.) + quotient(c, 4.) + (2. * (- c))), 7.));
 	 }
 
 double neg__to__pos/*29*/ (double d){
  return
  ((d < 0.)
 	? (d + 7.)
-	: 
-	d);
+	: d);
 	 }
 
 double birthday/*36*/ (double dw){
@@ -67,11 +56,11 @@ double birthday/*36*/ (double dw){
  yyyy;
 	 }
 
-double dd = 15.;
+double dd/*50*/ = 15.;
 	 
-double mm = 11.;
+double mm/*51*/ = 11.;
 	 
-double yyyy = 2002.;
+double yyyy/*52*/ = 2002.;
 	 
 int main(){
 	display(birthday(day__of__week()));
